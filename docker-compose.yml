@@ -1,0 +1,12 @@
+version: '3'
+services:
+  smp-frontend:
+    build: .
+    ports:
+      - "3000:3000"
+    networks:
+      - smp-network
+
+
+networks:
+  smp-network:
