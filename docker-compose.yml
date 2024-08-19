@@ -1,6 +1,7 @@
 version: '3'
 services:
   smp-frontend:
+    container_name: smp-frontend-container
     build: .
     ports:
       - "3000:3000"
