@@ -5,7 +5,10 @@ WORKDIR /app/sheet-music-player
 
 # Se copia el archivo de dependencia y el código fuente al contenedor
 COPY package.json package-lock.json /app/sheet-music-player/
-COPY . /app/sheet-music-player/
+COPY . .
+COPY next.config.mjs ./next.config.mjs
+
+ENV NEXT_TELEMETRY_DISABLED 1
 
 # Se instalan las dependencias
 RUN npm install

@@ -5,7 +5,8 @@ WORKDIR /app/sheet-music-player
 
 # Se copia el archivo de dependencia y el código fuente al contenedor
 COPY package.json package-lock.json /app/sheet-music-player/
-COPY . /app/sheet-music-player/
+COPY . .
+COPY next.config.mjs ./next.config.mjs
 
 # Se instalan las dependencias
 RUN npm install
@@ -16,4 +17,5 @@ RUN npm run build
 EXPOSE 3000
 
 
+# CMD [ "npm", "start" ]
 CMD [ "npm", "start" ]

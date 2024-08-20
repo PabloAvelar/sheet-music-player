@@ -1,0 +1,23 @@
+services:
+  smp-frontend:
+    container_name: smp-frontend-container
+    build:
+      context: .
+    restart: always
+    command: npm run dev
+    volumes:
+      - ".:/app/sheet-music-player" # Volumen para actualizar el código irl
+      - /app/sheet-music-player/node_modules
+      - /app/sheet-music-player/.next
+    ports:
+      - "3000:3000"
+    networks:
+      - smp-network
+    environment:
+      - NODE_ENV=development
+      - WATCHPACK_POLLING=true
+      - CHOKIDAR_USEPOLLING=true
+
+
+networks:
+  smp-network:
