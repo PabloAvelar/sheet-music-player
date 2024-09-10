@@ -1,0 +1,20 @@
+%% No sé cómo hacer diagramas de PERT
+graph TD
+    A((Definir Requisitos)) --> B((Crear Roadmap))
+    B --> C((Configurar Entorno))
+    C --> D((Página de Inicio))
+    D --> E((Página de Lectura))
+    E --> F((Diseño Responsivo))
+    F --> G((Configurar Entorno Backend))
+    G --> H((Endpoints API))
+    H --> I((Auth))
+    I --> J((Unitarias))
+    J --> K((Integración))
+    K --> L((Staging))
+    L --> M((Despliegue))
+    M --> N((General))
+    N --> O((API))
+    O --> P((Subir Documentación))
+
+    M -.->|Hito| D
+    L -.->|Hito| D
