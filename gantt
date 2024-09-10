@@ -1,0 +1,31 @@
+%% Usar mermaid.live para correr este código
+gantt
+    dateFormat  YYYY-MM-DD
+    title       Eyelody
+    excludes    weekends
+
+    section Planificación
+    Definir requisitos :done,    req, 2024-08-12, 3d
+    Crear roadmap   :done,    roadmap, after req, 2d
+
+    section Desarrollo Frontend
+    Configurar entorno      :active,  setup, 2024-08-17, 2d
+    Página de inicio    :active,  homepage, after setup, 8d
+    Página de lectura     :         profile, after homepage, 5d
+    Diseño responsivo     :         responsive, after profile, 6d
+
+    section Desarrollo Backend
+    Configurar entorno backend        :active,  backend_setup, after responsive, 9d
+    Endpoints API         :         api, after backend_setup, 5d
+    Auth         :         auth, after api, 4d
+
+    section Pruebas y Despliegue
+    Unitarias         :         tests, after auth, 3d
+    Integración   :         integration, after tests, 4d
+    Staging   :         deploy_staging, after integration, 2d
+    Despliegue              :milestone, deploy_production, 2024-10-01, 0d
+
+    section Documentación
+    General :       user_doc, after deploy_staging, 3d
+    API    :       api_doc, after user_doc, 2d
+    Subir documentación :       repo_doc, after api_doc, 1d
