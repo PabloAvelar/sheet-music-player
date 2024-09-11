@@ -5,25 +5,29 @@ gantt
     excludes    weekends
 
     section Planificación
-    Definir requisitos :done,    req, 2024-08-12, 3d
+    Definir requisitos :done,    req, 2024-09-09, 3d
     Crear roadmap   :done,    roadmap, after req, 2d
 
-    section Desarrollo Frontend
-    Configurar entorno      :active,  setup, 2024-08-17, 2d
-    Página de inicio    :active,  homepage, after setup, 8d
-    Página de lectura     :         profile, after homepage, 5d
-    Diseño responsivo     :         responsive, after profile, 6d
+    section Diseño
+    Base de datos      :  db, 2024-09-17, 2d
+    Interfaz de usuario    : ui, after db, 3d
+    Arquitectura de Software     :         architecure, after ui, 2d
+    Planificación de interfaces (API)     :         apidesign, after ui, 3d
 
-    section Desarrollo Backend
-    Configurar entorno backend        :active,  backend_setup, after responsive, 9d
-    Endpoints API         :         api, after backend_setup, 5d
-    Auth         :         auth, after api, 4d
+    section Desarrollo
+    Configurar entorno      :active,  homepage, 2024-09-27, 6d
+    Página de inicio    : homepage, 2024-09-27, 5d
+    Cargar archivos     :    upload, 2024-10-02, 2d
+    Procesamiento de archivo     :         processing, after upload, 5d
+    Página de visualización     :         visualization, after processing, 3d
+    Perfil usuario              :         profile, after visualization, 4d
+    Eliminar música              :         deletemusic, after visualization, 4d
 
     section Pruebas y Despliegue
-    Unitarias         :         tests, after auth, 3d
-    Integración   :         integration, after tests, 4d
-    Staging   :         deploy_staging, after integration, 2d
-    Despliegue              :milestone, deploy_production, 2024-10-01, 0d
+    Unitarias         :         unittest, after profile, 3d
+    Integración   :         integration, after unittest, 4d
+    Staging   :         deploy_staging, after integration, 3d
+    Despliegue   :         deploy, after deploy_staging, 2d
 
     section Documentación
     General :       user_doc, after deploy_staging, 3d
