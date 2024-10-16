@@ -9,6 +9,7 @@ export default function Home() {
         <main>
             <div className="bg-red-700">
                 <p className="text-sm">Jesus Alejandro</p>
+	    <p>Agregando texto para probar mis claves</p>
             </div>
 
             <Contenedor>
