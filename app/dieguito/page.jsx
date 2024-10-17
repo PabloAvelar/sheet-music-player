@@ -4,6 +4,7 @@ import Image from "next/image";
 
 export default function Home() {
     const nombre = "saul";
+	const nombre2 = "diego";
 
     return (
         <main>
