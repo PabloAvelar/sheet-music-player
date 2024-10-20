@@ -3,9 +3,6 @@ import Contenedor from "@/components/Contenedor";
 import Image from "next/image";
 
 export default function Home() {
-    const nombre = "saul";
-	const nombre2 = "diego";
-
     return (
         <main>
             <div className="bg-red-700">
