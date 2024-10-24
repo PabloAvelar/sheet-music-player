@@ -1,11 +1,10 @@
-import Image from "next/image";
+import NordTest from '../components/NordTest';
 
 export default function Home() {
   return (
-    <main>
-      <div className="bg-red-700">
-        <p className="text-sm">hola mundo</p>
-      </div>
-    </main>
+    <div>
+      <NordTest />
+    </div>
   );
 }
+
