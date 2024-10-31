@@ -1,9 +1,9 @@
-import NordTest from '../components/NordTest';
+import LandingPage from './landing/page';
 
 export default function Home() {
   return (
     <div>
-      <NordTest />
+      <LandingPage />
     </div>
   );
 }
