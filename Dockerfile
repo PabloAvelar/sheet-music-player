@@ -1,17 +1,14 @@
-FROM node:latest
+FROM node:18-alpine
 
 # Este es el directorio de trabajo
 WORKDIR /app/sheet-music-player
 
 # Se copia el archivo de dependencia y el código fuente al contenedor
 COPY package.json package-lock.json /app/sheet-music-player/
-
-# Se instalan las dependencias
 RUN npm install
 
+# Copy the program code
 COPY . .
-
-COPY next.config.mjs ./next.config.mjs
 
 RUN npm run build
 
@@ -19,4 +16,4 @@ RUN npm run build
 EXPOSE 3000
 
 # CMD [ "npm", "start" ]
-CMD [ "npm", "run", "start" ]
+CMD [ "npm", "start" ]
