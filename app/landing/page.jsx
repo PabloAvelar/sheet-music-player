@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react";
+import { Button } from '@nextui-org/react';
 
 export default function LandingPage() {
     return (
@@ -18,7 +18,9 @@ export default function LandingPage() {
               <div className="w-20 h-20 bg-nord-8 rounded" />
               <div className="w-20 h-20 bg-nord-9 rounded" />
               <div className="w-20 h-20 bg-nord-10 rounded" />
-              <Button>Get Started</Button>
+              <Button color="primary" auto>
+                Get Started
+              </Button>
             </div>
           </div>
         </div>

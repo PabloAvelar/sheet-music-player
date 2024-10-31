@@ -9,13 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@chakra-ui/react": "^3.0.1",
-    "@emotion/react": "^11.13.3",
-    "@emotion/styled": "^11.13.0",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "framer-motion": "^11.11.10",
+    "@nextui-org/react": "^2.4.8",
     "next": "^14.2.16",
     "react": "^18",
     "react-dom": "^18",

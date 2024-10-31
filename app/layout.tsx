@@ -1,13 +1,13 @@
-import { ChakraProvider } from "@chakra-ui/react";
+import { NextUIProvider } from '@nextui-org/react'
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props;
   return (
     <html suppressHydrationWarning>
       <body>
-        <ChakraProvider>
+        <NextUIProvider>
           {children}
-        </ChakraProvider>
+        </NextUIProvider>
       </body>
     </html>
   );
