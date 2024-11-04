@@ -5,6 +5,9 @@ const nextConfig = {
             poll: 1000,
             aggregateTimeout: 300,
         }
+        config.cache = {
+            type: 'memory',
+        };
         return config
     },
 };

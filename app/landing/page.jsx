@@ -1,9 +1,11 @@
-import { Button } from '@nextui-org/react';
 
-export default function LandingPage() {
+export default function LandingPage() { // Fixed typo from LandinPage
   return (
-    <div class="bg-nord0 text-nord6 p-4">
-      Hello, World!
+    <div className="min-w-screen bg-nord-polar-1 p-8">
+      <div className="text-white">
+        <h1 className="text-nord-aurora-0">Hola</h1>
+      </div>
     </div>
+
   );
 }

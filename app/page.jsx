@@ -1,5 +1,5 @@
 import LandingPage from './landing/page';
-import '../styles/globals.css'
+import '../lib/fontawesome';
 
 export default function Home() {
   return (
