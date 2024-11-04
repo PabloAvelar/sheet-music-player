@@ -1,11 +1,8 @@
 
 export default function LandingPage() { // Fixed typo from LandinPage
   return (
-    <div className="min-w-screen bg-nord-polar-1 p-8">
-      <div className="text-black">
-        <h1 className="text-black">Hola</h1>
-      </div>
-    </div>
-
+    <div class="bg-nord-0">
+        <p class="text-nord-5">Hello, this is some text</p>
+    </div> 
   );
 }
