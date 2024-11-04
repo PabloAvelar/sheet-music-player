@@ -1,11 +1,12 @@
 import LandingPage from './landing/page';
 import '../lib/fontawesome';
+import { NextUIProvider } from '@nextui-org/react';
 
 export default function Home() {
   return (
-    <div>
+    <NextUIProvider>
       <LandingPage />
-    </div>
+    </NextUIProvider>
   );
 }
 

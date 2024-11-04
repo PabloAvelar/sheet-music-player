@@ -1,10 +1,13 @@
 import type { Config } from 'tailwindcss'
+const {nextui} = require("@nextui-org/react");
  
 const config: Config = {
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}', // Note the addition of the `app` directory.
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
+    // Include Next UI theme styles
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,jsx,tsx}",
  
     // Or if using `src` directory:
     './src/**/*.{js,ts,jsx,tsx,mdx}',
@@ -13,6 +16,7 @@ const config: Config = {
     extend: {},
   },
   plugins: [
+    nextui(),
     require('tailwind-nord'),
   ],
 }

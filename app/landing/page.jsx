@@ -8,7 +8,7 @@ export default function LandingPage() { // Fixed typo from LandinPage
           <h1 class="text-9xl text-nord-0">Eyelody</h1>
         </div>
         <div class="bg-nord-1">
-          <p>hoal</p>
+          <Button>Hola</Button>
         </div>
       </div>
     </div> 
