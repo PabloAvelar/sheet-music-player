@@ -1,9 +1,10 @@
 "use client";
 
-import { Button, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar } from '@nextui-org/react';
+import { Button } from '@nextui-org/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
 import { useState, useRef } from 'react';
+import Navbar from '../../components/navbar';
 
 export default function LandingPage() {
   const fileInputRef = useRef(null);
@@ -22,29 +23,9 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="h-screen w-screen bg-nord-6">
+    <main className="h-screen w-full bg-nord-6 ">
       {/* Navigation bar */}
-      <div className="w-full p-4 flex justify-end">
-        <Dropdown placement="bottom-end">
-          <DropdownTrigger>
-            <Avatar 
-              isBordered
-              as="button"
-              className="transition-transform"
-              color="primary"
-              size="lg"
-              src="https://i.pravatar.cc/150"
-            />
-          </DropdownTrigger>
-          <DropdownMenu aria-label="Profile Actions">
-            <DropdownItem key="profile">Profile</DropdownItem>
-            <DropdownItem key="settings">Settings</DropdownItem>
-            <DropdownItem key="logout" className="text-danger" color="danger">
-              Log Out
-            </DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-      </div>
+      <Navbar/>
 
       {/* Existing content */}
       <div className="flex flex-col items-center justify-center h-[calc(100%-4rem)] p-12">
@@ -57,10 +38,11 @@ export default function LandingPage() {
           onChange={handleFileChange}
           className="hidden"
           accept=".png,.jpg,.jpeg"
+          width={200}
         />
         <Button className="bg-nord-7 mt-12"
         onClick={handleFileClick}>Upload</Button>
       </div>
-    </div>
+    </main>
   );
 }
