@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from '@nextui-org/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
 import { useState, useRef } from 'react';
 import Navbar from '../../components/navbar';
@@ -41,7 +41,7 @@ export default function LandingPage() {
           width={200}
         />
         <Button className="bg-nord-7 mt-12"
-        onClick={handleFileClick}>Upload</Button>
+        onClick={handleFileClick}>Upload <FontAwesomeIcon icon={faUpload} /> </Button>
       </div>
     </main>
   );

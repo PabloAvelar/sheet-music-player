@@ -1,9 +1,10 @@
 import { NextUIProvider } from '@nextui-org/react'
 import { Inter } from 'next/font/google'
 import { Metadata } from 'next'
-import Navbar from '../components/navbar';
 
-
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+config.autoAddCss = false
 import './globals.css'
 
 export const metadata: Metadata = {
