@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
 import { useState, useRef } from 'react';
 import Navbar from '../../components/navbar';
+import MainContainer from '../../components/maincontainer';
 
 export default function LandingPage() {
   const fileInputRef = useRef(null);
@@ -25,10 +26,10 @@ export default function LandingPage() {
   return (
     <main className="h-screen w-full bg-nord-6 ">
       {/* Navigation bar */}
-      <Navbar/>
+      <Navbar />
 
       {/* Existing content */}
-      <div className="flex flex-col items-center justify-center h-[calc(100%-4rem)] p-12">
+      <MainContainer>
         <div className="bg-nord-15 p-12 rounded-lg">
           <h1 className="text-9xl text-nord-0">Eyelody</h1>
         </div>
@@ -41,8 +42,9 @@ export default function LandingPage() {
           width={200}
         />
         <Button className="bg-nord-7 mt-12"
-        onClick={handleFileClick}>Upload <FontAwesomeIcon icon={faUpload} /> </Button>
-      </div>
+          onClick={handleFileClick}>Upload <FontAwesomeIcon icon={faUpload} />
+        </Button>
+      </MainContainer>
     </main>
   );
 }
