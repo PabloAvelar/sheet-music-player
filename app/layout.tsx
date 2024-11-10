@@ -10,6 +10,9 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'Eyelody',
   description: 'Music sheet translator',
+  icons: {
+    icon: '/eyelody_logo.png',
+  }
 }
 
 const inter = Inter({ subsets: ['latin'] })
