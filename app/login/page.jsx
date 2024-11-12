@@ -9,7 +9,7 @@ function Login() {
     <MainContainer>
       <h1>Welcome back!</h1>
       <AppForm>
-        <Input variant="flat" type="email" placeholder="Email" />
+        <Input label="Email" variant="flat" type="email" placeholder="" />
         <PasswordInput
           label="Password"
           variant="flat"

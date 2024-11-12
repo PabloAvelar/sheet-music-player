@@ -5,11 +5,13 @@ import MainContainer from '../../components/maincontainer'
 import AppForm from '../../components/appform'
 import { Input, Button } from "@nextui-org/react";
 import registerService from '../../services/registerService';
+import PasswordInput from "../../components/passswordinput";
 
 function Register() {
   const [valueUsername, setValueUsername] = React.useState("");
   const [valueEmail, setValueEmail] = React.useState("");
   const [valuePassword, setValuePassword] = React.useState("");
+  const [valuePasswordConfirmation, setValuePasswordConfirmation] = React.useState("");
 
   const sendData = async () => {
     try {
@@ -17,12 +19,13 @@ function Register() {
         username: valueUsername,
         password: valuePassword,
         email: valueEmail,
+        passwordConfimation: valuePasswordConfirmation
       }
 
       const response = await registerService.register(data);
       console.log(response);
     } catch {
-      console.error("no se pudo bro");
+      console.error("Couldn't sign up!");
     }
   }
   
@@ -34,10 +37,18 @@ function Register() {
         </div>
 
         <AppForm>
-          <Input size={'sm'} variant="flat" type="text" placeholder="Username" value={valueUsername} onValueChange={setValueUsername} />
-          <Input size={'sm'} variant="flat" type="email" placeholder="Email" value={valueEmail} onValueChange={setValueEmail} />
-          <Input size={'sm'} variant="flat" type="password" placeholder="Password" value={valuePassword} onValueChange={setValuePassword} />
-
+          <Input label="Username" variant="flat" type="text" placeholder="" value={valueUsername} onValueChange={setValueUsername} />
+          <Input label="Email" variant="flat" type="email" placeholder="" value={valueEmail} onValueChange={setValueEmail} />
+          <PasswordInput
+            label="Password"
+            variant="flat"
+            placeholder=""
+          />
+          <PasswordInput
+            label="Confirm password"
+            variant="flat"
+            placeholder=""
+          />
           <Button onPress={sendData}> Register </Button>
         </AppForm>
 
