@@ -1,8 +1,10 @@
 "use client";
 import {Card, CardBody, CardFooter, Image} from "@nextui-org/react";
+import {useEffect, useState, useRef} from 'react';
 import Navbar from '../../components/navbar';
 import MainContainer from '../../components/maincontainer';
 import MidiPlayer from 'midi-player-js';
+import { Input, Button } from "@nextui-org/react";
 
 function Player() {
   const [isPlaying, setIsPlaying] = useState(false);
