@@ -8,8 +8,6 @@ module.exports = {
     // Include Next UI theme styles
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,jsx,tsx}",
 
-    // Or if using `src` directory:
-    './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {},

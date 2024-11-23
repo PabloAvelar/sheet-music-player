@@ -25,8 +25,7 @@ export default function LandingPage() {
 
   return (
     <main className="h-screen w-full bg-nord-6 ">
-      {/* Navigation bar */}
-      <Navbar />
+      
 
       {/* Existing content */}
       <MainContainer>

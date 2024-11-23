@@ -33,7 +33,7 @@ function Register() {
     <main className="h-screen w-full bg-nord-6 ">
       <MainContainer>
         <div>
-          <h1>Register</h1>
+          <h1>Create a new account</h1>
         </div>
 
         <AppForm>

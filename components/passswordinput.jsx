@@ -6,7 +6,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
-function PasswordInput({ label, variant, placeholder }) {
+function PasswordInput({ label, variant, placeholder, value, onChange }) {
 
     const [isVisible, setIsVisible] = useState(false);
 
@@ -14,6 +14,8 @@ function PasswordInput({ label, variant, placeholder }) {
 
     return (
         <Input
+            value={value}
+            onChange={onChange}
             label={label}
             variant={variant}
             placeholder={placeholder}
