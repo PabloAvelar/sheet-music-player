@@ -1,5 +1,4 @@
 import AuthCheck from "../../components/authmiddleware";
-import { deleteSession, getSession, saveSession } from "../../lib/authSession";
 
 function Profile() {
     // Establecer la sesión
