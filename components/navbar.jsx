@@ -1,9 +1,8 @@
-import React from 'react'
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar } from '@nextui-org/react';
 
 function Navbar() {
     return (
-        <div className="w-full max-w-screen p-4 flex justify-end">
+        <div className="w-full max-w-screen p-4 flex justify-end bg-nord-10">
             <Dropdown placement="bottom-end">
                 <DropdownTrigger>
                     <Avatar
