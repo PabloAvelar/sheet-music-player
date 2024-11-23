@@ -1,18 +1,28 @@
 "use client";
-import {Card, CardBody, CardFooter, Image} from "@nextui-org/react";
+import {Card, CardBody, CardFooter, Image, Button} from "@nextui-org/react";
 import {useEffect, useState, useRef} from 'react';
 import Navbar from '../../components/navbar';
 import MainContainer from '../../components/maincontainer';
 import MidiPlayer from 'midi-player-js';
-import { Input, Button } from "@nextui-org/react";
+import Soundfont from 'soundfont-player';
 
 function Player() {
   const [isPlaying, setIsPlaying] = useState(false);
   const playerRef = useRef(null);
 
+  const audioContextRef = useRef(null);
+  const instrumentRef = useRef(null);
+
   useEffect(() => {
+    audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
+    Soundfont.instrument(audioContextRef.current, 'acoustic_grand_piano').then((instrument) => {
+      instrumentRef.current = instrument;
+    });
+
     playerRef.current = new MidiPlayer.Player((event) => {
-      console.log(event);
+      if (event.name === 'Note on' && instrumentRef.current) {
+        instrumentRef.current.play(event.noteName, audioContextRef.current.currentTime, { gain: event.velocity / 100 });
+      }
     });
   }, []);
 
