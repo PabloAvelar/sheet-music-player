@@ -6,6 +6,7 @@ import { faUpload } from '@fortawesome/free-solid-svg-icons';
 import { useState, useRef } from 'react';
 import Navbar from '../../components/navbar';
 import MainContainer from '../../components/maincontainer';
+import uploadService from '../../services/uploadService';
 
 export default function LandingPage() {
   const fileInputRef = useRef(null);
@@ -15,11 +16,20 @@ export default function LandingPage() {
     fileInputRef.current.click();
   };
 
-  const handleFileChange = (event) => {
+  const handleFileChange = async (event) => {
     const file = event.target.files[0];
     if (file) {
       setSelectedFile(file);
-      console.log('File selected:', file.name);
+      console.log('File selected:', file);
+
+      // Enviando el archivo al servidor!!
+      const data = {
+        source: file
+      }
+      
+      const res = await uploadService.sendImage(data);
+
+      console.log(res);
     }
   };
 

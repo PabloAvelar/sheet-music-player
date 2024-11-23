@@ -10,6 +10,11 @@ export async function postByUrl(url,data){
     return dato.data;
 }
 
+export async function postMultipartByUrl(url,data){
+    const dato = await axios.post(url,data);
+    return dato.data;
+}
+
 export async function reqByToken(url,method,token,data){
     try {
         const res = await axios({

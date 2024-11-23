@@ -13,6 +13,7 @@ export default function PreventAuthUser({ children }) {
 
     useEffect(() => {
         const sessionObject = getSession();
+        setSession(sessionObject);
         if (sessionObject) {
             // Si hay sesión, redirige a la pagina inicial
             router.push('/');
@@ -27,9 +28,10 @@ export default function PreventAuthUser({ children }) {
     }
 
     // Solo renderiza el contenido si no hay sesión
-    if (session) {
-        return null;  // O redirige a la página de login si no hay sesión
-    }else
+    if (session != null) {
+        console.log("hay sesion we")
+        return <></>;  // O redirige a la página de login si no hay sesión
+    }
 
     return children;
 }

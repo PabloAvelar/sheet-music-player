@@ -7,11 +7,12 @@ import MainContainer from "../../components/maincontainer";
 import { Input, Button } from "@nextui-org/react";
 import registerService from "../../services/registerService";
 import { saveSession } from "../../lib/authSession";
-import AuthCheck from "../../components/authmiddleware";
 import PreventAuthUser from "../../components/preventauthuser";
+import { useRouter } from 'next/navigation';
 
 
 function Login() {
+  const router = useRouter();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
@@ -29,8 +30,8 @@ function Login() {
 
       router.push("/");
 
-    } catch {
-      console.error("Couldn't login!");
+    } catch(e) {
+      console.error("Couldn't login!", e);
     }
   }
 
