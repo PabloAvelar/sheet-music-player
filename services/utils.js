@@ -10,11 +10,6 @@ export async function postByUrl(url,data){
     return dato.data;
 }
 
-export async function postMultipartByUrl(url,data){
-    const dato = await axios.post(url,data);
-    return dato.data;
-}
-
 export async function reqByToken(url,method,token,data){
     try {
         const res = await axios({
@@ -22,15 +17,14 @@ export async function reqByToken(url,method,token,data){
             method: method,
             data: data,
             headers: {
-                "Authorization": `Bearer ${token}`,
-                "Cache-Control": "no-cache"
+                "Authorization": `Token ${token}`,
+                'Content-Type': 'multipart/form-data',
             }
         });
 
         return res.data;
     } catch (error) {
-        // Manejar errores aquí si es necesario
-        console.error("Error en la solicitud:", error);
+        console.error("Request Error:", error);
         throw error;
     }
 }
@@ -41,7 +35,7 @@ export async function reqByTokenNoData(url, method, token) {
             method: method,
             url: url,
             headers: {
-                "Authorization": `Bearer ${token}`,
+                "Authorization": `Token ${token}`,
                 'Content-Type': 'multipart/form-data',
                 "Cache-Control": "no-cache"
             }
