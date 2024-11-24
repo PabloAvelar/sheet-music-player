@@ -7,7 +7,7 @@ import { Input, Button } from "@nextui-org/react";
 import registerService from '../../services/registerService';
 import PasswordInput from "../../components/passswordinput";
 import { useRouter } from 'next/navigation';
-
+import { saveSession } from '../../lib/authSession';
 
 function Register() {
   const router = useRouter();
@@ -18,23 +18,25 @@ function Register() {
 
   const sendData = async () => {
     try {
+
       const data = {
         username: valueUsername,
         password: valuePassword,
         email: valueEmail,
-        passwordConfimation: valuePasswordConfirmation
       }
 
+      console.log(data);
       const response = await registerService.register(data);
+      console.log(response);
       saveSession(response);
 
       router.push("/");
 
-    } catch {
-      console.error("Couldn't sign up!");
+    } catch(e) {
+      console.error("Couldn't sign up!", e);
     }
   }
-  
+
   return (
     <main className="h-screen w-full bg-nord-6 ">
       <MainContainer>
@@ -49,11 +51,15 @@ function Register() {
             label="Password"
             variant="flat"
             placeholder=""
+            value={valuePassword}
+            onChange={(e) => setValuePassword(e.target.value)}
           />
           <PasswordInput
             label="Confirm password"
             variant="flat"
             placeholder=""
+            value={valuePasswordConfirmation}
+            onChange={(e) => setValuePasswordConfirmation(e.target.value)}
           />
           <Button onPress={sendData}> Register </Button>
         </AppForm>
