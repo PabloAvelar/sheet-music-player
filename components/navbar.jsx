@@ -46,7 +46,7 @@ function Navbar() {
                         />
                     </DropdownTrigger>
                     <DropdownMenu aria-label="Profile Actions">
-                        <DropdownItem href='/profile' key="profile">Profile</DropdownItem>
+                        <DropdownItem href='/dashboard' key="profile">Dashboard</DropdownItem>
                         <DropdownItem key="settings">Settings</DropdownItem>
                         <DropdownItem onPress={handleLogout} key="logout" className="text-danger" color="danger">
                             Log Out

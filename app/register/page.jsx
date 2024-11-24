@@ -6,8 +6,11 @@ import AppForm from '../../components/appform'
 import { Input, Button } from "@nextui-org/react";
 import registerService from '../../services/registerService';
 import PasswordInput from "../../components/passswordinput";
+import { useRouter } from 'next/navigation';
+
 
 function Register() {
+  const router = useRouter();
   const [valueUsername, setValueUsername] = React.useState("");
   const [valueEmail, setValueEmail] = React.useState("");
   const [valuePassword, setValuePassword] = React.useState("");
@@ -23,7 +26,10 @@ function Register() {
       }
 
       const response = await registerService.register(data);
-      console.log(response);
+      saveSession(response);
+
+      router.push("/");
+
     } catch {
       console.error("Couldn't sign up!");
     }

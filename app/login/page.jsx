@@ -23,6 +23,8 @@ function Login() {
         email: email,
       }
 
+      console.log("Data");
+      console.log(data);
       const response = await registerService.login(data);
       console.log(response);
 

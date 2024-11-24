@@ -26,9 +26,9 @@ export default function LandingPage() {
       const data = {
         source: file
       }
-      
-      const res = await uploadService.sendImage(data);
 
+      const res = await uploadService.sendImage(data);
+      
       console.log(res);
     }
   };
