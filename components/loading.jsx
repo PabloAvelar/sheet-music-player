@@ -1,8 +1,15 @@
+'use client';
+
+import React from 'react'
+import { Progress } from "@nextui-org/react";
+
 function Loading() {
   return (
-    <div className="">
-      Loading...
-    </div>
+        <Progress size="small" 
+            isIndeterminate
+            aria-label="loading"
+            color="primary"
+        />
   )
 }
 
