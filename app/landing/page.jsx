@@ -7,10 +7,12 @@ import { useState, useRef } from 'react';
 import Navbar from '../../components/navbar';
 import MainContainer from '../../components/maincontainer';
 import uploadService from '../../services/uploadService';
+import { getSession } from '../../lib/authSession';
 
 export default function LandingPage() {
   const fileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
+  const auth = getSession();
 
   const handleFileClick = () => {
     fileInputRef.current.click();
@@ -28,7 +30,6 @@ export default function LandingPage() {
       }
 
       const res = await uploadService.sendImage(data);
-      
       console.log(res);
     }
   };

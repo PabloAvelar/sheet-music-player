@@ -1,12 +1,18 @@
 import { getSession } from "../lib/authSession";
-import { postByUrl, getByUrl, reqByToken, reqByTokenNoData } from "./utils";
+import { postByUrl, getByUrl, reqByToken, reqNoToken } from "./utils";
 
 const baseUrl = 'http://localhost:8000/api/v1';
-const token = getSession()?.token;
+const auth = getSession();
 
 async function sendImage(data) {
     const endpoint = baseUrl + '/upload/';
-    const res = reqByToken(endpoint, 'POST', token, data);
+    let res;
+
+    if (auth) {
+        res = reqByToken(endpoint, 'POST', auth.token, data);
+    } else {
+        res = reqNoToken(endpoint, 'POST', data)
+    }
     return res;
 }
 

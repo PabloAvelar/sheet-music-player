@@ -29,15 +29,14 @@ export async function reqByToken(url,method,token,data){
     }
 }
 
-export async function reqByTokenNoData(url, method, token) {
+export async function reqNoToken(url, method, data) {
     try {
         const res = await axios({
-            method: method,
             url: url,
+            method: method,
+            data: data,
             headers: {
-                "Authorization": `Token ${token}`,
                 'Content-Type': 'multipart/form-data',
-                "Cache-Control": "no-cache"
             }
         });
 
