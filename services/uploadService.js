@@ -16,7 +16,6 @@ async function sendImage(data) {
     return res;
 }
 
-export default
-    {
-        sendImage
-    };
+export default {
+    sendImage
+};

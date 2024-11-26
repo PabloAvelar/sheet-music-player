@@ -63,7 +63,6 @@ function Register() {
           />
           <Button onPress={sendData}> Register </Button>
         </AppForm>
-
       </MainContainer>
     </main>
   )
