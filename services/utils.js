@@ -1,16 +1,25 @@
 import axios from 'axios';
 
-export async function getByUrl(url){
-    const {data} = await axios.get(url)
+export async function getByUrl(url) {
+    const { data } = await axios.get(url)
     return data;
 }
 
-export async function postByUrl(url,data){
-    const dato = await axios.post(url,data);
+export async function postByUrl(url, data) {
+    const dato = await axios.post(url, data);
     return dato.data;
 }
 
-export async function reqByToken(url,method,token,data){
+export async function postByUrlMidi(url, data) {
+    const dato = await axios.post(url, data, {
+        responseType: "arraybuffer",
+    });
+    return dato.data;
+}
+
+
+
+export async function reqByToken(url, method, token, data) {
     try {
         const res = await axios({
             url: url,

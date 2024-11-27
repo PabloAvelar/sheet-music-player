@@ -36,10 +36,9 @@ export default function LandingPage() {
 
       // Se asume que ya está cargando
       setIsLoading(true);
-      setTimeout(() => {
-        router.push(`/player?midifile=` + "471545f5c82f4eff81cf86ab1f5352fe");
-      }, 2000);
-      //const res = await uploadService.sendImage(data);
+      const res = await uploadService.sendImage(data);
+      console.log(res.uuid)
+      router.push(`/player?midifile=` + res.uuid);
 
     }
 

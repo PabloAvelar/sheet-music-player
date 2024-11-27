@@ -1,14 +1,14 @@
 import { getSession } from "../lib/authSession";
-import { postByUrl, getByUrl, reqByToken, reqNoToken } from "./utils";
+import { postByUrl, getByUrl, reqByToken, postByUrlMidi } from "./utils";
 
 const baseUrl = 'http://localhost:8000/api/v1';
 
-async function getMidiFile(data) {
-    const endpoint = baseUrl + '/getmidifile/';
-    const res = getByUrl(endpoint);
+async function retrieveMidiFile(data) {
+    const endpoint = baseUrl + '/retrievemidifile/';
+    const res = postByUrlMidi(endpoint, data);
     return res;
 }
 
 export default {
-    getMidiFile
+    retrieveMidiFile
 };

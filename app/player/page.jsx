@@ -5,45 +5,37 @@ import Navbar from '../../components/navbar';
 import MainContainer from '../../components/maincontainer';
 import MidiPlayer from 'midi-player-js';
 import Soundfont from 'soundfont-player';
-import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation'
 import midiService from "../../services/midiService";
 
 
 function Player() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [midiFile, setMidiFile] = useState(null);
+  const [midiFile, setMidiFile] = useState(false);
   const playerRef = useRef(null);
   const audioContextRef = useRef(null);
   const instrumentRef = useRef(null);
   const searchParams = useSearchParams();
   const notesRef = useRef({});
 
-  // const getMidiFile = async () => {
-  //   // Cargando archivo midi por parametros query
-  //   const uuidMidiFile = searchParams.get('midifile');
-  //   console.log(uuidMidiFile);
+  const requestMidiFile = async () => {
+    const id_midifile = searchParams.get('midifile')
+    const data = { id_midifile: id_midifile };
 
-  //   try {
-  //     const res = await midiService.getMidiFile({ uuidMidiFile });
-  //     return res;
-  //   } catch (e) {
-  //     console.error("Error al recuperar archivo midi", e);
-  //     throw e;
-  //   }
-  // }
+    try {
+      const res = await midiService.retrieveMidiFile(data);
+      setMidiFile(res);
+      console.log("BINARIO!!!")
+      console.log(res);
+      playerRef.current.loadArrayBuffer(res);
+
+    } catch (error) {
+      console.error("Ha ocurrido un error al cargar el midi al player", error);
+    }
+  }
 
   useEffect(() => {
-    
-    // Recuperando archivo midi para usarlo en el player
-    //const bin_midifile = getMidiFile();
-    //console.log(bin_midifile);
-    //setMidiFile(bin_midifile);
-    
-
-
-
-
+    requestMidiFile()
 
     audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
     Soundfont.instrument(audioContextRef.current, 'acoustic_grand_piano').then((instrument) => {
@@ -52,47 +44,68 @@ function Player() {
     });
 
     playerRef.current = new MidiPlayer.Player((event) => {
+      console.log("evento")
+      console.log(event)
       if (event.name === 'Note on' && instrumentRef.current) {
+        
+        // Cambiando a un nombre de nota correcto
+        event.noteName = event.noteName.replace("-", "");
+
         console.log(`Playing note: ${event.noteName}`);
+        if (audioContextRef.current.state === 'suspended') {
+          audioContextRef.current.resume();
+        }
         instrumentRef.current.play(event.noteName, audioContextRef.current.currentTime,
           { gain: event.velocity / 100 });
         playKey(event.noteName);
-      } else {
-        console.error("Invalid noteName:", event);
-      }
 
-      if (event.name === 'Note off' && instrumentRef.current) { // Esta condicion no se cumple
-        if (event.noteName) {
-          console.log(`Stopping note: ${event.noteName}`);
-          instrumentRef.current.stop(event.noteName);
-          stopKey(event.noteName);
-        } else {
-          console.error("Invalid noteName: ", event);
-        }
+      } else if (event.name === 'Note off' && instrumentRef.current) {
+        console.log("EVENTOW WEY");
+        console.log(event);
+        console.log(`Stopping note: ${event.noteName}`);
+        //instrumentRef.current.stop(event.noteName);
+        stopKey(event.noteName);
       }
     });
 
-    // Load a MIDI file
-    try {
-      //playerRef.current.loadArrayBuffer(midifile.current);
-      console.log('MIDI file loaded');
-      fetch('/twinkle.MID')
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.arrayBuffer();
-        })
-        .then(data => {
-          playerRef.current.loadArrayBuffer(data);
-          console.log('MIDI file loaded');
-        })
-        .catch(error => {
-          console.error('Error loading MIDI file:', error);
-        });
-    } catch (error) {
-      console.error("Ha ocurrido un error al cargar el midi al player", error);
-    }
+    // const arrayBuffer = midiFile.arrayBuffer();
+    // playerRef.current.loadArrayBuffer(midiFile);
+
+
+
+    // fetch('/16d3eabf-d7e2-45ad-a5fd-3a22a1188054.mid')
+    // fetch('/twinkle.MID')
+    // fetch('http://localhost:8000/api/v1/retrievemidifile/', {
+    //   method: "POST",
+    //   body: JSON.stringify(
+    //     {
+    //       id_midifile: searchParams.get('midifile')
+    //     }
+    //   ),
+    // })
+    //   .then(response => {
+    //     if (!response.ok) {
+    //       throw new Error('Network response was not ok');
+    //     }
+    //     return response.arrayBuffer();
+    //   })
+    //   .then(data => {
+    //     playerRef.current.loadArrayBuffer(data);
+    //     console.log('MIDI file loaded');
+    //   })
+    //   .catch(error => {
+    //     console.error('Error loading MIDI file:', error);
+    //   });
+
+    return () => {
+      // Cleanup function to clean up resources when the component unmounts
+      if (playerRef.current) {
+        playerRef.current.stop();
+      }
+      if (audioContextRef.current) {
+        audioContextRef.current.close();
+      }
+    };
   }, []);
 
   const handlePlay = async () => {
@@ -118,7 +131,7 @@ function Player() {
 
   const stopKey = (note) => {
     if (notesRef.current[note]) {
-      notesRef.current[note].style.background = 'blue';
+      notesRef.current[note].style.background = 'white';
     }
   }
 
