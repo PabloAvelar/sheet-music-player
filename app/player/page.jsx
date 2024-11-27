@@ -47,7 +47,7 @@ function Player() {
       console.log("evento")
       console.log(event)
       if (event.name === 'Note on' && instrumentRef.current) {
-        
+
         // Cambiando a un nombre de nota correcto
         event.noteName = event.noteName.replace("-", "");
 
@@ -116,6 +116,7 @@ function Player() {
     if (playerRef.current) {
       if (isPlaying) {
         playerRef.current.stop();
+        clearHighlightedNotes();
       } else {
         playerRef.current.play();
       }
@@ -127,12 +128,20 @@ function Player() {
     if (notesRef.current[note]) {
       notesRef.current[note].style.background = 'blue';
     }
-  }
+  };
 
   const stopKey = (note) => {
     if (notesRef.current[note]) {
-      notesRef.current[note].style.background = 'white';
+      const isFlat = /b\d+/.test(note);
+      notesRef.current[note].style.background = isFlat ? 'black' : 'white';
     }
+  };
+
+  const clearHighlightedNotes = () => {
+    Object.keys(notesRef.current).forEach((note) => {
+      const isFlat = /b\d+/.test(note);
+      notesRef.current[note].style.background = isFlat ? 'black' : 'white';
+    })
   }
 
   return (
@@ -142,23 +151,30 @@ function Player() {
           <Button onClick={handlePlay}>
             {isPlaying ? 'Stop' : 'Play'}
           </Button>
-          <div className="piano">
-            <div className="keys">
-              <div ref={(el) => notesRef.current['C4'] = el} className="key">C</div>
-              <div ref={(el) => notesRef.current['C#4'] = el} className="key">C#</div>
-              <div ref={(el) => notesRef.current['D4'] = el} className="key">D</div>
-              <div ref={(el) => notesRef.current['D#4'] = el} className="key">D#</div>
-              <div ref={(el) => notesRef.current['E4'] = el} className="key">E</div>
-              <div ref={(el) => notesRef.current['F4'] = el} className="key">F</div>
-              <div ref={(el) => notesRef.current['F#4'] = el} className="key">F#</div>
-              <div ref={(el) => notesRef.current['G4'] = el} className="key">G</div>
-              <div ref={(el) => notesRef.current['G#4'] = el} className="key">G#</div>
-              <div ref={(el) => notesRef.current['A4'] = el} className="key">A</div>
-              <div ref={(el) => notesRef.current['A#4'] = el} className="key">A#</div>
-              <div ref={(el) => notesRef.current['B4'] = el} className="key">B</div>
+            <div className="piano relative w-full h-40">
+              <div className="keys flex relative">
+                {Object.entries({
+                  C3: 'C', 'Db3': 'Db', D3: 'D', 'Eb3': 'Eb', E3: 'E', F3: 'F',
+                  'Gb3': 'Gb', G3: 'G', 'Ab3': 'Ab', A3: 'A', 'Bb3': 'Bb', B3: 'B',
+                  C4: 'C', 'Db4': 'Db', D4: 'D', 'Eb4': 'Eb', E4: 'E', F4: 'F',
+                  'Gb4': 'Gb', G4: 'G', 'Ab4': 'Ab', A4: 'A', 'Bb4': 'Bb', B4: 'B',
+                  C5: 'C', 'Db5': 'Db', D5: 'D', 'Eb5': 'Eb', E5: 'E', F5: 'F',
+                  'Gb5': 'Gb', G5: 'G', 'Ab5': 'Ab', A5: 'A', 'Bb5': 'Bb', B5: 'B'
+                }).map(([key, note]) => (
+                  <div 
+                    ref={(el) => notesRef.current[key] = el}
+                    className={`key relative flex items-center justify-center text-black font-bold ${
+                      key.includes('b') 
+                        ? 'bg-black text-white absolute z-10 w-6 h-20 ml-[-12px]'
+                        : 'bg-white h-40 w-10 border border-gray-700'
+                    }`}
+                    key={key}
+                  >
+                    {note}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-
         </CardBody>
       </Card>
     </MainContainer>

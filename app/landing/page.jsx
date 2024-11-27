@@ -36,9 +36,13 @@ export default function LandingPage() {
 
       // Se asume que ya está cargando
       setIsLoading(true);
-      const res = await uploadService.sendImage(data);
-      console.log(res.uuid)
-      router.push(`/player?midifile=` + res.uuid);
+      try{
+        const res = await uploadService.sendImage(data);
+        console.log(res.uuid)
+        router.push(`/player?midifile=` + res.uuid);
+      }catch(e) {
+        console.error("No se pudo crear el archivo midi", e)
+      }
 
     }
 
