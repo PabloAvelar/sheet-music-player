@@ -9,12 +9,15 @@ import MainContainer from '../../components/maincontainer';
 import uploadService from '../../services/uploadService';
 import { getSession } from '../../lib/authSession';
 import { Progress } from "@nextui-org/react";
+import { useRouter } from 'next/navigation';
+
 
 export default function LandingPage() {
   const fileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const auth = getSession();
+  const router = useRouter();
 
   const handleFileClick = () => {
     fileInputRef.current.click();
@@ -33,11 +36,12 @@ export default function LandingPage() {
 
       // Se asume que ya está cargando
       setIsLoading(true);
-      const res = await uploadService.sendImage(data);
-      setIsLoading(false);
-      console.log(res);
-    }
+      setTimeout(() => {
+        router.push(`/player?midifile=` + "471545f5c82f4eff81cf86ab1f5352fe");
+      }, 2000);
+      //const res = await uploadService.sendImage(data);
 
+    }
 
   }
 
